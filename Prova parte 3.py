@@ -6,7 +6,7 @@ total_despesa = 0
 total_investimento = 0
 
 with open('Arquivo.txt', 'r') as n:
-
+    armazem = n.readlines()
 
     meses = []
     salarios = []
@@ -16,22 +16,16 @@ with open('Arquivo.txt', 'r') as n:
 
 
 
-
-    armazem = n.readlines()
-
-
-
-
-
-    for linha in n:
+    for linhas in armazem:
         # Separar os valores da linha pelo caractere ","
-        valores = linha.split(",")
+        valores = linhas.split(",")
 
         mes = float(valores[0])
         salario = float(valores[1])
         porcento_10 = float(valores[2])
         porcento_1 = float(valores[3])
         despesa = float(valores[4].strip())
+
 
 
         meses.append(mes)
@@ -53,25 +47,18 @@ with open('Arquivo.txt', 'r') as n:
         total_despesa += cada
 
 total_investimento = float(total_por10 + total_por1)
+while True:
+    opcoes = int(input("MENU \n 1)TOTAL DE SALÁRIOS \n 2)TOTAL INVESTIMENTO \n 3)TOTAL RENDIMENTO \n 4)TOTAL DE DESPESAS\n\n Resposta: "))
 
-
-
-
-
-
-
-opcoes = int(input("MENU \n 1)TOTAL DE SALÁRIOS \n 2)TOTAL INVESTIMENTO \n 3)TOTAL RENDIMENTO \n 4)TOTAL DE DESPESAS\n 5) SAAIR DO MENU\n\n Resposta: "))
-
-
-while opcoes != 5:
-    if opcoes == 1:
-        print(f'O total de salários recebido foi : {total_salarios}')
-    if opcoes == 2:
-        print(f'O total investido foi : {total_por10}')
-    if opcoes == 3:
+    if opcoes != 5:
+        if opcoes == 1:
+            print(f'O total de salários recebido foi : {total_salarios}')
+        if opcoes == 2:
+            print(f'O total investido foi : {total_por10}')
+        if opcoes == 3:
             print(f'O total do rendimento : {total_por1}')
-    if opcoes == 4:
-        opcoes = int(input(f'O total das despesas : {total_despesa}'))
-
-
-print('VAI SE LASCAR!!')
+        if opcoes == 4:
+            print(f'O total das despesas : {total_despesa}')
+        d = input('Desejar continuar no menu [S/N]').upper().split()[0]
+        if d != "S":
+            break
